@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.io.File;
 import java.util.List;
 
 @Configuration
@@ -50,6 +51,12 @@ public class CustomerJobConfig {
 
     @Bean
     public FlatFileItemWriter<Customer> csvWriter() {
+        // Ensure output directory exists
+        File dir = new File("output");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
         return new FlatFileItemWriterBuilder<Customer>()
                 .name("customerCsvWriter")
                 .resource(new FileSystemResource("output/customers.csv"))
