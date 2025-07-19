@@ -10,7 +10,7 @@ pipeline {
 
         stage('Run Batch Job') {
             steps {
-                bat 'java -jar target\\*.jar'
+                bat 'java -jar target\\springboot3-batch-csv-processor-0.0.1-SNAPSHOT.jar'
             }
         }
     }
