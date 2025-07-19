@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    triggers {
+        // Run every day at 2:30 AM
+        cron('30 2 * * *')
+    }
+
     stages {
         stage('Build') {
             steps {
