@@ -1,20 +1,22 @@
-pipeline{
+pipeline {
     agent any
-    
-    tools{
-        maven 'maven_3.8'
-        jdk 'jdk_17'
+
+    tools {
+        maven 'Maven_3.8'
+        jdk 'Java_17'
     }
-    stages{
-        stage(build){
-            steps{
-                sh 'maven clean package'
+
+    stages {
+        stage('Build') {
+            steps {
+                bat 'mvn clean package'
             }
         }
 
-        stage('Run Batch Job'){
-            steps{
-                sh 'java -jar target/*.jar'
+        stage('Run Batch Job') {
+            steps {
+                bat 'java -jar target\\*.jar'
             }
         }
     }
+}
