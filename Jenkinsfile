@@ -20,3 +20,9 @@ pipeline {
         }
     }
 }
+
+post {
+    success {
+        archiveArtifacts artifacts: 'output/customers.csv', fingerprint: true
+    }
+}
