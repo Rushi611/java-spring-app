@@ -16,7 +16,7 @@ pipeline {
         stage('Run Batch Job') {
             steps {
                 retry(2) {
-                    bat 'java -jar target\\springboot3-batch-csv-processor-0.0.1-SNAPSHOT.jar'
+                  bat 'java -jar target\\springboot3-batch-csv-processor-0.0.1-SNAPSHOT.jar filePath=input/customers.csv'
                 }
             }
         }
