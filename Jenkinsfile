@@ -15,14 +15,10 @@ pipeline {
 
         stage('Run Batch Job') {
             steps {
-                bat 'java -jar target\\springboot3-batch-csv-processor-0.0.1-SNAPSHOT.jar'
+                retry(2) { // retries 2 times if it fails
+                    bat 'java -jar target\\springboot3-batch-csv-processor-0.0.1-SNAPSHOT.jar'
+                }
             }
         }
-    }
-}
-
-post {
-    success {
-        archiveArtifacts artifacts: 'output/customers.csv', fingerprint: true
     }
 }
